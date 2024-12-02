@@ -109,3 +109,14 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+.card {
+  display: grid;
+  width: min-content;
+  justify-items: center;
+}
+
+h1 {
+  font-size: 18px;
+  font-weight: 400;
+}
