@@ -110,10 +110,18 @@ h6 {
   isolation: isolate;
 }
 
+.allCards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: min-content;
+  gap: 50px;
+}
+
 .card {
   display: grid;
-  width: min-content;
+  width: 100px;
   justify-items: center;
+  border: 1px solid black;
 }
 
 h1 {
