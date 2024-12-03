@@ -1,11 +1,11 @@
 import fetchURL from './fetchURL';
 import { pokemon } from './pokemon';
 
-export function Card({ id }) {
+export function Card({ id, handleClick }) {
   return (
-    <div className="card">
+    <button className="card" onClick={() => handleClick()}>
       <img src={fetchURL(id)} alt={pokemon[id]} />
       <h2>{pokemon[id]}</h2>
-    </div>
+    </button>
   );
 }

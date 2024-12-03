@@ -8,7 +8,7 @@ export default function App() {
   const [cardOrder, setCardOrder] = useState(usedIds);
 
   function handleClick() {
-    // stuff
+    setCardOrder(shuffleSet(cardOrder));
   }
 
   return (
@@ -16,11 +16,9 @@ export default function App() {
       <div className="appContainer">
         <h1>POKéMON MEMORY GAME</h1>
         <div className="allCards">
-          <Card id={cardOrder[0]} />
-          <Card id={cardOrder[1]} />
-          <Card id={cardOrder[2]} />
-          <Card id={cardOrder[3]} />
-          <Card id={cardOrder[4]} />
+          {cardOrder.map((index) => (
+            <Card key={index} id={index} handleClick={handleClick} />
+          ))}
         </div>
       </div>
     </>

@@ -24,6 +24,7 @@
   /* hardcoded, because tallest sprite size is 56px and won't change ever */
   grid-template-rows: 66px 1fr;
   border: 1px solid black;
+  background-color: white;
 }
 
 .card img {
