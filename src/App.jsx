@@ -5,10 +5,12 @@ import { Card } from './Card';
 
 export default function App() {
   const [setSize, setSetSize] = useState(5);
-  const usedIds = firstSet(setSize);
-  const [cardOrder, setCardOrder] = useState(usedIds);
+  const [cardOrder, setCardOrder] = useState(firstSet(setSize));
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(5);
 
   function handleClick() {
+    setScore(score + 1);
     setCardOrder(shuffleSet(cardOrder));
   }
 
@@ -23,8 +25,8 @@ export default function App() {
         </div>
       </div>
       <div className="scores">
-        <h3>HIGH SCORE: 5</h3>
-        <h3>CURRENT SCORE: 0</h3>
+        <h3>HIGH SCORE: {highScore}</h3>
+        <h3>CURRENT SCORE: {score}</h3>
       </div>
     </>
   );
