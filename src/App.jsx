@@ -14,7 +14,9 @@ export default function App() {
   function handleClick(e) {
     const clickedId = e.currentTarget.getAttribute('data');
     if (clickedCards.includes(clickedId)) {
-      restartGame();
+      loseRound();
+    } else if (clickedCards.length + 1 === sizeOfSet) {
+      winRound();
     } else {
       setClickedCards([...clickedCards, clickedId]);
       setScore(score + 1);
@@ -22,11 +24,27 @@ export default function App() {
     }
   }
 
-  function restartGame() {
+  function loseRound() {
     console.log('Game over');
     if (score >= highScore) {
       setHighScore(score);
     }
+    restartGame();
+  }
+
+  function winRound() {
+    console.log('You won the round!');
+    newRound(sizeOfSet + 1);
+    setScore(score + 1);
+  }
+
+  function newRound(size) {
+    setSizeOfSet(size);
+    setCardOrder(newSet(sizeOfSet + 1));
+    setClickedCards([]);
+  }
+
+  function restartGame() {
     setSizeOfSet(smallestSetSize);
     setCardOrder(newSet(sizeOfSet));
     setClickedCards([]);
