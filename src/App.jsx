@@ -8,12 +8,20 @@ export default function App() {
   const [cardOrder, setCardOrder] = useState(firstSet(sizeOfSet));
   const [clickedCards, setClickedCards] = useState([]);
   const [score, setScore] = useState(0);
-  const [highScore, setHighScore] = useState(5);
+  const [highScore, setHighScore] = useState(0);
 
   function handleClick(e) {
-    setClickedCards([...clickedCards, e.currentTarget.getAttribute('data')]);
-    setScore(score + 1);
-    setCardOrder(shuffleSet(cardOrder));
+    const clickedId = e.currentTarget.getAttribute('data');
+    if (clickedCards.includes(clickedId)) {
+      console.log('Game over');
+      if (score >= highScore) {
+        setHighScore(score);
+      }
+    } else {
+      setClickedCards([...clickedCards, clickedId]);
+      setScore(score + 1);
+      setCardOrder(shuffleSet(cardOrder));
+    }
   }
 
   return (
