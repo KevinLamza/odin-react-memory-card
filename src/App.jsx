@@ -4,7 +4,8 @@ import { pokemon } from './pokemon';
 import { Card } from './Card';
 
 export default function App() {
-  const usedIds = firstSet();
+  const [setSize, setSetSize] = useState(5);
+  const usedIds = firstSet(setSize);
   const [cardOrder, setCardOrder] = useState(usedIds);
 
   function handleClick() {
@@ -21,14 +22,18 @@ export default function App() {
           ))}
         </div>
       </div>
+      <div className="scores">
+        <h3>HIGH SCORE: 5</h3>
+        <h3>CURRENT SCORE: 0</h3>
+      </div>
     </>
   );
 }
 
-function firstSet() {
+function firstSet(setSize) {
   const unshuffledIds = Object.keys(pokemon);
   const shuffledIds = shuffleSet(unshuffledIds);
-  return shuffledIds.slice(0, 5);
+  return shuffledIds.slice(0, setSize);
 }
 
 function shuffleSet(unshuffledIds) {

@@ -32,6 +32,12 @@
   align-self: center;
 }
 
+.scores {
+  position: fixed;
+  top: 15px;
+  right: 25px;
+}
+
 h1 {
   display: inline-block;
 }
