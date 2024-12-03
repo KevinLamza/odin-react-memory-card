@@ -4,12 +4,14 @@ import { pokemon } from './pokemon';
 import { Card } from './Card';
 
 export default function App() {
-  const [setSize, setSetSize] = useState(5);
-  const [cardOrder, setCardOrder] = useState(firstSet(setSize));
+  const [sizeOfSet, setSizeOfSet] = useState(5);
+  const [cardOrder, setCardOrder] = useState(firstSet(sizeOfSet));
+  const [clickedCards, setClickedCards] = useState([]);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(5);
 
-  function handleClick() {
+  function handleClick(e) {
+    setClickedCards([...clickedCards, e.currentTarget.getAttribute('data')]);
     setScore(score + 1);
     setCardOrder(shuffleSet(cardOrder));
   }
@@ -32,10 +34,10 @@ export default function App() {
   );
 }
 
-function firstSet(setSize) {
+function firstSet(sizeOfSet) {
   const unshuffledIds = Object.keys(pokemon);
   const shuffledIds = shuffleSet(unshuffledIds);
-  return shuffledIds.slice(0, setSize);
+  return shuffledIds.slice(0, sizeOfSet);
 }
 
 function shuffleSet(unshuffledIds) {
