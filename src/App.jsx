@@ -4,8 +4,9 @@ import { pokemon } from './pokemon';
 import { Card } from './Card';
 
 export default function App() {
-  const [sizeOfSet, setSizeOfSet] = useState(5);
-  const [cardOrder, setCardOrder] = useState(firstSet(sizeOfSet));
+  const smallestSetSize = 5;
+  const [sizeOfSet, setSizeOfSet] = useState(smallestSetSize);
+  const [cardOrder, setCardOrder] = useState(newSet(sizeOfSet));
   const [clickedCards, setClickedCards] = useState([]);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
@@ -13,15 +14,23 @@ export default function App() {
   function handleClick(e) {
     const clickedId = e.currentTarget.getAttribute('data');
     if (clickedCards.includes(clickedId)) {
-      console.log('Game over');
-      if (score >= highScore) {
-        setHighScore(score);
-      }
+      restartGame();
     } else {
       setClickedCards([...clickedCards, clickedId]);
       setScore(score + 1);
       setCardOrder(shuffleSet(cardOrder));
     }
+  }
+
+  function restartGame() {
+    console.log('Game over');
+    if (score >= highScore) {
+      setHighScore(score);
+    }
+    setSizeOfSet(smallestSetSize);
+    setCardOrder(newSet(sizeOfSet));
+    setClickedCards([]);
+    setScore(0);
   }
 
   return (
@@ -42,7 +51,7 @@ export default function App() {
   );
 }
 
-function firstSet(sizeOfSet) {
+function newSet(sizeOfSet) {
   const unshuffledIds = Object.keys(pokemon);
   const shuffledIds = shuffleSet(unshuffledIds);
   return shuffledIds.slice(0, sizeOfSet);
