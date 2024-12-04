@@ -7,6 +7,7 @@ export default function App() {
   const smallestSetSize = 5;
   const [gameActive, setGameActive] = useState(false);
   const [displayLose, setDisplayLose] = useState(false);
+  const [displayWin, setDisplayWin] = useState(false);
   const [sizeOfSet, setSizeOfSet] = useState(smallestSetSize);
   const [cardOrder, setCardOrder] = useState(newSet(sizeOfSet));
   const [clickedCards, setClickedCards] = useState([]);
@@ -18,7 +19,8 @@ export default function App() {
     if (clickedCards.includes(clickedId)) {
       loseRound();
     } else if (clickedCards.length + 1 === sizeOfSet) {
-      winRound();
+      if (clickedCards.length + 1 === Object.keys(pokemon).length) winGame();
+      else winRound();
     } else {
       setClickedCards([...clickedCards, clickedId]);
       setScore(score + 1);
@@ -54,6 +56,12 @@ export default function App() {
     setClickedCards([]);
     setScore(0);
     setDisplayLose(false);
+    setDisplayWin(false);
+  }
+
+  function winGame() {
+    setDisplayWin(true);
+    setGameActive(false);
   }
 
   function AllCards() {
@@ -117,6 +125,13 @@ export default function App() {
     <>
       <div className="appContainer">
         <h1>POKéMON MEMORY GAME</h1>
+        {displayWin ? (
+          <h2 className="gameOver">
+            You won the whole game! Do you want to start a new round?
+          </h2>
+        ) : (
+          <></>
+        )}
         {displayLose ? <h2 className="gameOver">Game over :(</h2> : <></>}
         {gameActive ? (
           <AllCards />
