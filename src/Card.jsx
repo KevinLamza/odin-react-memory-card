@@ -3,9 +3,14 @@ import { pokemon } from './pokemon';
 
 export function Card({ id, handleClick }) {
   return (
-    <button data={id} className="card" onClick={handleClick}>
-      <img src={fetchURL(id)} alt={pokemon[id]} />
-      <h2>{pokemon[id]}</h2>
-    </button>
+    <div className="flipCard">
+      <div className="flipCard-inner">
+        <button data={id} className="cardFront" onClick={handleClick}>
+          <img src={fetchURL(id)} alt={pokemon[id]} />
+          <h2>{pokemon[id]}</h2>
+        </button>
+        <button className="cardBack"></button>
+      </div>
+    </div>
   );
 }

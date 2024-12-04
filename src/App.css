@@ -16,7 +16,38 @@
   gap: 50px;
 }
 
-.card {
+.flipCard {
+  background-color: transparent;
+  width: 100px;
+  height: 100px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+.flipCard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* text-align: center; */
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flipCard:hover .flipCard-inner {
+  transform: rotateY(180deg);
+}
+
+.cardFront,
+.cardBack {
+  position: absolute;
+  /* width: 1
+  00%; */
+  /* height: 100%; */
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.cardFront {
   display: grid;
   width: 100px;
   height: 100px;
@@ -27,9 +58,16 @@
   background-color: white;
 }
 
-.card img {
+.cardFront img {
   margin: 5px 0px;
   align-self: center;
+}
+
+.cardBack {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  transform: rotateY(180deg);
 }
 
 .scores {
@@ -60,6 +98,5 @@ h2 {
 
 h2.gameOver {
   font-weight: 600;
-  /* color: salmon; */
   font-size: 40px;
 }

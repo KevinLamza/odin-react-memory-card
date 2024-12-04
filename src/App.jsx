@@ -16,6 +16,7 @@ export default function App() {
 
   function handleClick(e) {
     const clickedId = e.currentTarget.getAttribute('data');
+    performAnimation();
     if (clickedCards.includes(clickedId)) {
       loseRound();
     } else if (clickedCards.length + 1 === sizeOfSet) {
@@ -119,6 +120,13 @@ export default function App() {
     else if (difficulty === 'medium') restartGame(10);
     else if (difficulty === 'hard') restartGame(15);
     else if (difficulty === 'einstein') restartGame(20);
+  }
+
+  function performAnimation() {
+    const matches = document.getElementsByClassName('card');
+    for (let i = 0; i < matches.length; i++) {
+      matches[i].setAttribute('class', 'card flipped');
+    }
   }
 
   return (

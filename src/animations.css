@@ -1,4 +1,4 @@
-.card:hover {
+.cardFront:hover {
   -webkit-animation-name: wiggle;
   -ms-animation-name: wiggle;
   -ms-animation-duration: 500ms;
