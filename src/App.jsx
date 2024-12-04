@@ -6,6 +6,7 @@ import { Card } from './Card';
 export default function App() {
   const smallestSetSize = 5;
   const [gameActive, setGameActive] = useState(false);
+  const [displayLose, setDisplayLose] = useState(false);
   const [sizeOfSet, setSizeOfSet] = useState(smallestSetSize);
   const [cardOrder, setCardOrder] = useState(newSet(sizeOfSet));
   const [clickedCards, setClickedCards] = useState([]);
@@ -30,7 +31,9 @@ export default function App() {
     if (score >= highScore) {
       setHighScore(score);
     }
-    restartGame();
+    setScore(0);
+    setDisplayLose(true);
+    setGameActive(false);
   }
 
   function winRound() {
@@ -50,6 +53,7 @@ export default function App() {
     setCardOrder(newSet(size));
     setClickedCards([]);
     setScore(0);
+    setDisplayLose(false);
   }
 
   function AllCards() {
@@ -113,6 +117,7 @@ export default function App() {
     <>
       <div className="appContainer">
         <h1>POKéMON MEMORY GAME</h1>
+        {displayLose ? <h2 className="gameOver">Game over :(</h2> : <></>}
         {gameActive ? (
           <AllCards />
         ) : (
