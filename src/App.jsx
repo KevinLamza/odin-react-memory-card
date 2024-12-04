@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { pokemon } from './pokemon';
 import { Card } from './Card';
@@ -66,6 +66,9 @@ export default function App() {
   }
 
   function AllCards() {
+    useEffect(() => {
+      setTimeout(performAnimation, 700);
+    }, []);
     return (
       <div className="allCards">
         {cardOrder.map((index) => (
@@ -123,9 +126,9 @@ export default function App() {
   }
 
   function performAnimation() {
-    const matches = document.getElementsByClassName('card');
+    const matches = document.getElementsByClassName('flipCard');
     for (let i = 0; i < matches.length; i++) {
-      matches[i].setAttribute('class', 'card flipped');
+      matches[i].classList.remove('hover');
     }
   }
 

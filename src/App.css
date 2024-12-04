@@ -23,28 +23,31 @@
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
-.flipCard-inner {
+.flipCardInner {
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: 100px;
   /* text-align: center; */
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
-.flipCard:hover .flipCard-inner {
+.flipCard.hover .flipCardInner {
   transform: rotateY(180deg);
 }
 
 .cardFront,
 .cardBack {
   position: absolute;
-  /* width: 1
-  00%; */
-  /* height: 100%; */
+  width: 100px;
+  height: 100px;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
+}
+
+.cardBack {
+  right: 0px;
 }
 
 .cardFront {
@@ -66,8 +69,13 @@
 .cardBack {
   width: 100px;
   height: 100px;
-  background-color: black;
+  padding: 0;
   transform: rotateY(180deg);
+}
+
+.cardBack img {
+  width: 100%;
+  height: 100%;
 }
 
 .scores {
